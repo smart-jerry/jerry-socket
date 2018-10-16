@@ -1,0 +1,19 @@
+html{
+	background: #ffffff;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	font-size: 62.5%;
+	/*10 ÷ 16 × 100% = 62.5%*/
+}
+body{
+	font-size: 2.8rem;
+}
+/* 要注意表单元素并不继承父级 font 的问题 */
+body, button, input, select, textarea {
+	font-size: 2.8rem;
+	-webkit-tap-highlight-color: transparent;
+}
+::-webkit-input-placeholder { color:#999999;}
+::-moz-placeholder { color:#999999;} /* firefox 19+ */
+:-ms-input-placeholder { color:#999999;} /* ie */
+input:-moz-placeholder { color:#999999;}
