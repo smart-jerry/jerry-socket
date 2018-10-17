@@ -17,3 +17,8 @@ body, button, input, select, textarea {
 ::-moz-placeholder { color:#999999;} /* firefox 19+ */
 :-ms-input-placeholder { color:#999999;} /* ie */
 input:-moz-placeholder { color:#999999;}
+
+/* chrome默认黄色框问题修复 */
+input:focus, textarea:focus {
+	outline: none;
+}

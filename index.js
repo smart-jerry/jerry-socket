@@ -1,16 +1,22 @@
 /**
- * Created by Administrator on 2018/10/16.
+ * Created by jerry on 2018/10/16.
  */
-
-
-var app = require('express')();
+var express = require('express');
+var app = express();
+var path = require('path');
 var http = require('http').Server(app);
 var io =require('socket.io')(http);
-app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html');
-//	res.render('index', {data: []});
-});
-
+// 设置静态访问目录
+app.use('/public', express.static(path.join(__dirname, 'public')));
+console.log(path,'dddddddddddddddd');
+//app.use(express.static(__dirname+'/public'));
+// 引入路由
+var mysocket = require('./router/my-scoket');
+app.use('/', mysocket);
+//  视图
+app.set('views',__dirname + '/views')
+app.set('view engine', 'ejs');
+// socket 监听
 io.on('connection',function (socket) {
 	console.log('one user inter')
 	socket.on('send msg',function (msg) {
@@ -18,7 +24,7 @@ io.on('connection',function (socket) {
 		io.emit('send msg', msg);
 	})
 })
-
+// 监听-本地服务
 http.listen(3000, function(){
 	console.log('listening on *:3000');
 });
