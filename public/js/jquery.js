@@ -10214,5 +10214,4 @@
     return jQuery;
 });
 
-export default jQuery;
 
