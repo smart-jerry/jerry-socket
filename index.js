@@ -12,7 +12,8 @@ console.log(path,'dddddddddddddddd');
 //app.use(express.static(__dirname+'/public'));
 // 引入路由
 var mysocket = require('./router/my-scoket');
-app.use('/', mysocket);
+var myimages = require('./router/my-images');
+app.use('/', [mysocket,myimages]);
 //  视图
 app.set('views',__dirname + '/views')
 app.set('view engine', 'ejs');

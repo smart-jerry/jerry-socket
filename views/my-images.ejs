@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>jerry's socket demo</title>
+    <link rel="stylesheet" href="/public/css/base.css">
+    <link rel="stylesheet" href="/public/css/myimages.css">
+    <script>
+		var u         = navigator.userAgent;
+		var isiOS     = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		function setAutoWindow(){
+			var winWidths    = (document.body) && (document.body.clientWidth) ? document.body.clientWidth : window.innerWidth;
+			var defaultWidth = 750;
+			var viewport     = document.getElementById('viewport');
+			var appScale     = winWidths >= defaultWidth ? 1 : (winWidths / defaultWidth);
+			viewport.content = 'width=device-width,initial-scale=' + appScale + ', minimum-scale=' + appScale + ', maximum-scale=' + appScale;
+		}
+		if(isiOS) setAutoWindow();
+    </script>
+</head>
+<body>
+<div class="images-box">
+    <div class="images-list" id="images-list">
+        <ul class="images-list-ul">
+            <li>ddddddddddddddddddddddd</li>
+            <li>ddddddddddddddddddddddd</li>
+            <li>ddddddddddddddddddddddd</li>
+            <li>ddddddddddddddddddddddd</li>
+        </ul>
+    </div>
+    <div id="images-show">
+        <h2>图片保存区域</h2>
+    </div>
+    <div class="share-btn" onclick="share()">share</div>
+</div>
+</body>
+</html>
+<script>if(!isiOS) setAutoWindow();</script>
+<script src="/public/js/jquery.js"></script>
+<script src="/public/js/html2canvas.js"></script>
+<script>
+    function share () {
+    	var content =  document.getElementById('images-list');
+        if(typeof html2canvas != "undefined" ){
+	        html2canvas(content).then(function(canvas) {
+//	        	$('#images-show').append(canvas);
+	        	document.getElementById('images-show').appendChild(canvas);
+	        });
+
+
+        }
+    }
+
+</script>

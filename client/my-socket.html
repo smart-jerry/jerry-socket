@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>jerry's socket demo</title>
+    <link rel="stylesheet" href="../public/css/base.css">
+    <link rel="stylesheet" href="../public/css/mysocket.css">
+    <script>
+		var u         = navigator.userAgent;
+		var isiOS     = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		function setAutoWindow(){
+			var winWidths    = (document.body) && (document.body.clientWidth) ? document.body.clientWidth : window.innerWidth;
+			var defaultWidth = 750;
+			var viewport     = document.getElementById('viewport');
+			var appScale     = winWidths >= defaultWidth ? 1 : (winWidths / defaultWidth);
+			viewport.content = 'width=device-width,initial-scale=' + appScale + ', minimum-scale=' + appScale + ', maximum-scale=' + appScale;
+		}
+		if(isiOS) setAutoWindow();
+    </script>
+</head>
+<body>
+<div class="message-box">
+    <div class="message-list">
+        <ul class="message-list-ul" id="message-list-ul">
+        </ul>
+    </div>
+    <div class="input-box">
+        <input type="text" class="" id="send-msg" placeholder="输入" />
+        <div class="btn-send" onclick="senMsg()">send</div>
+    </div>
+</div>
+</body>
+</html>
+<script>if(!isiOS) setAutoWindow();</script>
+<script src="js/socket.io.js"></script>
+<script src="../public/js/jquery.js"></script>
+<script>
+	var socket = io();
+	function senMsg () {
+		var msg = $('#send-msg').val();
+		socket.emit('send msg',msg);
+	}
+	socket.on('send msg',function (msg) {
+		$('#message-list-ul').append('<li>新消息：'+msg+'</li>');
+	})
+</script>
