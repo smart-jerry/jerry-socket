@@ -27,21 +27,27 @@
     </div>
     <div class="input-box">
         <input type="text" class="" id="send-msg" placeholder="输入" />
-        <div class="btn-send" onclick="senMsg()">send</div>
+        <div class="btn-send" onclick="senMsgtest()">send</div>
     </div>
 </div>
 </body>
 </html>
 <script>if(!isiOS) setAutoWindow();</script>
-<script src="js/socket.io.js"></script>
+<script src="../public/js/socket.io.js"></script>
 <script src="../public/js/jquery.js"></script>
 <script>
-	var socket = io();
-	function senMsg () {
-		var msg = $('#send-msg').val();
-		socket.emit('send msg',msg);
-	}
-	socket.on('send msg',function (msg) {
-		$('#message-list-ul').append('<li>新消息：'+msg+'</li>');
-	})
+    var scoket = io.connect('/mysocket',{
+	    transports: ['websocket']
+    })
+
+    function senMsgtest () {
+	    var msg = $('#send-msg').val();
+	    socket.emit('send msg',msg);
+    }
+    socket.on('connect',function () {
+	    console.log('lian jie cheng gong!!');
+	    socket.on('send msg',function (msg) {
+		    $('#message-list-ul').append('<li>新消息：'+msg+'</li>');
+	    })
+    })
 </script>

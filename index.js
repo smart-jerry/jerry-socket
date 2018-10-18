@@ -4,8 +4,17 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var http = require('http').Server(app);
-var io =require('socket.io')(http);
+var Server = require('http').Server(app);
+var io =require('socket.io');
+// io
+var baseConfig={};
+baseConfig.socketIo = io.listen(Server,{ serveClient: false });
+//将全局变量设置为不可删除、只读
+Object.defineProperty(global, "baseConfig", {
+	value: baseConfig,
+	writable: false,
+	configurable: false
+});
 // 设置静态访问目录
 app.use('/public', express.static(path.join(__dirname, 'public')));
 console.log(path,'dddddddddddddddd');
@@ -17,15 +26,8 @@ app.use('/', [mysocket,myimages]);
 //  视图
 app.set('views',__dirname + '/views')
 app.set('view engine', 'ejs');
-// socket 监听
-io.on('connection',function (socket) {
-	console.log('one user inter')
-	socket.on('send msg',function (msg) {
-		console.log('服务端得到一个消息：'+msg);
-		io.emit('send msg', msg);
-	})
-})
+
 // 监听-本地服务
-http.listen(3000, function(){
+Server.listen(3000, function(){
 	console.log('listening on *:3000');
 });
