@@ -3,7 +3,8 @@
  */
 var express = require('express');
 var io =baseConfig.socketIo;
-var mysocketdemo = io.of('/mysocket');
+var myNamespace = io.of('/mysocket');
+var mygoodsroom = io.of('/mygoodsroom');
 
 // 设置允许的来源value
 //io.origins(['foo.example.com:443']);
@@ -17,12 +18,16 @@ var mysocketdemo = io.of('/mysocket');
 //	callback(null, true);
 //});
 // socket 监听
-mysocketdemo.on('connection',function (socket) {
+myNamespace.on('connection',function (socket) {
 	console.log('one user inter')
 	socket.on('send msg',function (msg) {
 		console.log('服务端得到一个消息：'+msg);
-		mysocketdemo.emit('send msg', msg);
+		myNamespace.emit('send msg', msg);
 	})
+})
+mygoodsroom.on('connection',function (socket) {
+	console.log('ooooooooooooooooooo');
+	mygoodsroom.emit('remmodgoods', {goodsId:1,'title':'goods title','img':'http://imcut.jollychic.com/uploads/jollyimg/imageMaterialLib/201810/12/IL201810121434576236.jpg'});
 })
 
 var router = express.Router();

@@ -25,6 +25,9 @@
         <ul class="message-list-ul" id="message-list-ul">
         </ul>
     </div>
+    <div class="rem-goods" id="rem-goods">
+
+    </div>
     <div class="input-box">
         <input type="text" class="" id="send-msg" placeholder="输入" />
         <div class="btn-send" onclick="senMsg()">send</div>
@@ -36,18 +39,29 @@
 <script src="/public/js/socket.io.js"></script>
 <script src="/public/js/jquery.js"></script>
 <script>
-	var socket = io.connect('/mysocket',{
+	var mysocket = io.connect('/mysocket',{
 		transports:['websocket']
 	});
 //	var socket = io();
 	function senMsg () {
         var msg = $('#send-msg').val();
-        socket.emit('send msg',msg);
+		mysocket.emit('send msg',msg);
 	}
-	socket.on('connect',function () {
+	mysocket.on('connect',function () {
 		console.log('lian jie cheng gong!!');
-		socket.on('send msg',function (msg) {
+		mysocket.on('send msg',function (msg) {
 			$('#message-list-ul').append('<li>新消息：'+msg+'</li>');
+		});
+	});
+
+
+	var mygoodsroom = io.connect('/mygoodsroom',{
+		transports:['websocket']
+	});
+	mygoodsroom.on('connect',function () {
+		console.log('mygoodsroommygoodsroommygoodsroom');
+		mygoodsroom.on('remmodgoods',function (res) {
+			$('#rem-goods').html('<img src="'+res.img+'">');
 		})
 	})
 
