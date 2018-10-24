@@ -22,7 +22,8 @@ console.log(path,'dddddddddddddddd');
 // 引入路由
 var mysocket = require('./router/my-scoket');
 var myimages = require('./router/my-images');
-app.use('/', [mysocket,myimages]);
+var chat = require('./router/chat');
+app.use('/', [mysocket,myimages,chat]);
 //  视图
 app.set('views',__dirname + '/views')
 app.set('view engine', 'ejs');

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>jerry's socket demo</title>
+    <link rel="stylesheet" href="/public/css/base.css">
+    <link rel="stylesheet" href="/public/css/chat.css">
+    <script>
+		var u         = navigator.userAgent;
+		var isiOS     = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		function setAutoWindow(){
+			var winWidths    = (document.body) && (document.body.clientWidth) ? document.body.clientWidth : window.innerWidth;
+			var defaultWidth = 750;
+			var viewport     = document.getElementById('viewport');
+			var appScale     = winWidths >= defaultWidth ? 1 : (winWidths / defaultWidth);
+			viewport.content = 'width=device-width,initial-scale=' + appScale + ', minimum-scale=' + appScale + ', maximum-scale=' + appScale;
+		}
+		if(isiOS) setAutoWindow();
+    </script>
+</head>
+<body>
+<div class="message-box">
+    <div class="message-list">
+        <ul class="message-list-ul" id="message-list-ul">
+        </ul>
+    </div>
+    <div class="input-box">
+        <input type="text" class="" id="send-msg" placeholder="输入" />
+        <div class="btn-send" id="J-btn-send">send</div>
+    </div>
+</div>
+<div class="login-box J-login-box">
+    <div class="login-header">输入聊天昵称</div>
+    <div class="login-body">
+        <input type="text" id="chatName" />
+    </div>
+    <div class="login-footer">
+        <div class="btn" onclick="gotochat()">去聊天</div>
+    </div>
+</div>
+<div class="login-box-mask J-login-box"></div>
+</body>
+</html>
+<script>if(!isiOS) setAutoWindow();</script>
+<script src="/public/js/socket.io.js"></script>
+<script src="/public/js/jquery.js"></script>
+<script>
+	var userName = '游客';
+    function gotochat () {
+        userName = $('#chatName').val();
+        $('.J-login-box').hide();
+
+	    var mysocket = io.connect('/chatroom',{
+		    transports:['websocket'],
+		    query:{
+			    userId:5555,
+			    chatToken:'lilytoken',
+			    userName:userName
+		    }
+	    });
+	    //	var socket = io();
+	    $('#J-btn-send').on('click',function () {
+		    var msg = $('#send-msg').val();
+		    mysocket.emit('pushMessage',msg);
+	    })
+	    mysocket.on('connect',function () {
+		    console.log('lian jie cheng gong!!');
+		    mysocket.on('pushMessageList',function (res) {
+			    var msg=res.userName+': '+res.chatMessage;
+			    $('#message-list-ul').append('<li>'+msg+'</li>');
+		    });
+	    });
+    }
+</script>
