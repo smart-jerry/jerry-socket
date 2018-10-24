@@ -40,7 +40,12 @@
 <script src="/public/js/jquery.js"></script>
 <script>
 	var mysocket = io.connect('/mysocket',{
-		transports:['websocket']
+		transports:['websocket'],
+		query:{
+			userId:5555,
+			chatToken:'lilytoken',
+			userName:'lily'
+		}
 	});
 //	var socket = io();
 	function senMsg () {
@@ -55,6 +60,7 @@
 	});
 
 
+	//获取推荐商品
 	var mygoodsroom = io.connect('/mygoodsroom',{
 		transports:['websocket']
 	});
