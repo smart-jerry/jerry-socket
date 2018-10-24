@@ -36,18 +36,24 @@
 <script src="../public/js/socket.io.js"></script>
 <script src="../public/js/jquery.js"></script>
 <script>
-    var scoket = io.connect('/mysocket',{
-	    transports: ['websocket']
+    var scoketDemo = io.connect('http://172.31.11.230:3000/mysocket',{
+	    transports: ['websocket'],
+        query:{
+	    	userId:5555,
+            chatToken:'ddddddddddddd'
+        }
     })
 
     function senMsgtest () {
 	    var msg = $('#send-msg').val();
-	    socket.emit('send msg',msg);
+	    scoketDemo.emit('send msg',msg);
     }
-    socket.on('connect',function () {
-	    console.log('lian jie cheng gong!!');
-	    socket.on('send msg',function (msg) {
-		    $('#message-list-ul').append('<li>新消息：'+msg+'</li>');
+    scoketDemo.on('connect',function () {
+	    console.log('链接成功!!');
+	    scoketDemo.on('send msg',function (res) {
+            console.log(res);
+		    $('#message-list-ul').append('<li>新消息：'+res+'</li>');
+		    $('#send-msg').val("");
 	    })
     })
 </script>
