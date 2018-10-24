@@ -30,6 +30,7 @@
         <div class="btn-send" id="J-btn-send">send</div>
     </div>
 </div>
+<div class="whole-come" id="whole-come"></div>
 <div class="login-box J-login-box">
     <div class="login-header">输入聊天昵称</div>
     <div class="login-body">
@@ -38,6 +39,8 @@
     <div class="login-footer">
         <div class="btn" onclick="gotochat()">去聊天</div>
     </div>
+
+
 </div>
 <div class="login-box-mask J-login-box"></div>
 </body>
@@ -65,11 +68,19 @@
 		    mysocket.emit('pushMessage',msg);
 	    })
 	    mysocket.on('connect',function () {
-		    console.log('lian jie cheng gong!!');
+		    console.log(userName+'链接成功！');
+		    // 聊天信息推送
 		    mysocket.on('pushMessageList',function (res) {
 			    var msg=res.userName+': '+res.chatMessage;
 			    $('#message-list-ul').append('<li>'+msg+'</li>');
 		    });
+		    // 进入系统友好提示
+		    mysocket.on('wholeComeIn',function (res) {
+                $('#whole-come').html(res.userName+' 进入聊天系统！欢迎！！！').show();
+                window.setTimeout(function () {
+	                $('#whole-come').hide();
+                },1000)
+		    })
 	    });
     }
 </script>

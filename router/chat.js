@@ -21,17 +21,18 @@ var userNum = 0;
 chatroom.on('connection',function (socket) {
 	userNum++;
 	console.log(userNum+' users inter');
+	var query = socket.handshake.query;
+	chatroom.emit('wholeComeIn', query);// 进入聊天推送
 	// 接受用户发送的聊天内容
 	socket.on('pushMessage',function (msg) {
 		// 拿到用户信息
-		var query = socket.handshake.query;
 		var chatMessage = {
 			userName:query.userName,
 			userImg:query.userImg,
 			chatMessage:msg
 		}
 		chatroom.emit('pushMessageList', chatMessage);
-	})
+	});
 })
 
 

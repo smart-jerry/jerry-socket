@@ -38,21 +38,21 @@
 	cursor: pointer;
 	margin-right: 10px;
 }
-
-.rem-goods{
+/*提示*/
+.whole-come{
+	background: rgba(0,0,0,0.4);
 	position: fixed;
-	top:200px;
-	right: 20px;
-	width: 100px;
-	height: 100px;
-	overflow: hidden;
-}
-.rem-goods img{
-	max-width: 100%;
-	height: auto;
+	left: 50%;
+	top: 200px;
+	padding: 10px;
+	display: none;
+	margin-left: -300px;
+	width: 600px;
+	text-align: center;
 }
 
 
+/* 登录面板 */
 .login-box{
 	position: absolute;
 	top:50%;
