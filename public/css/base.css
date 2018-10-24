@@ -7,6 +7,8 @@ html{
 }
 body{
 	font-size: 2.8rem;
+	margin: 0;
+	padding: 0;
 }
 /* 要注意表单元素并不继承父级 font 的问题 */
 body, button, input, select, textarea {

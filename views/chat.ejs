@@ -30,7 +30,8 @@
         <div class="btn-send" id="J-btn-send">send</div>
     </div>
 </div>
-<div class="whole-come" id="whole-come"></div>
+<div class="whole-come" id="whole-come"></div><!--进入系统-->
+<!--登录-->
 <div class="login-box J-login-box">
     <div class="login-header">输入聊天昵称</div>
     <div class="login-body">
@@ -66,13 +67,25 @@
 	    $('#J-btn-send').on('click',function () {
 		    var msg = $('#send-msg').val();
 		    mysocket.emit('pushMessage',msg);
+		    $('#send-msg').val('');
 	    })
+        // 回车提交
+        $('#send-msg').on('keyup',function (e) {
+        	var keycode = e.keyCode;
+        	if(keycode == 13){
+		        $('#J-btn-send').trigger('click');
+            }
+//            console.log(e.keyCode);
+        })
 	    mysocket.on('connect',function () {
 		    console.log(userName+'链接成功！');
 		    // 聊天信息推送
 		    mysocket.on('pushMessageList',function (res) {
 			    var msg=res.userName+': '+res.chatMessage;
 			    $('#message-list-ul').append('<li>'+msg+'</li>');
+//			    $('body').scrollTo(0, 100);
+                var bottom = $('#message-list-ul').position().top + $('#message-list-ul').height();
+			    window.scrollTo(0,bottom);
 		    });
 		    // 进入系统友好提示
 		    mysocket.on('wholeComeIn',function (res) {
