@@ -52,7 +52,7 @@
 <script>
 	var userName = '游客';
     function gotochat () {
-        userName = $('#chatName').val();
+        userName = $('#chatName').val() == ""? userName:$('#chatName').val();
         $('.J-login-box').hide();
 
 	    var mysocket = io.connect('/chatroom',{
