@@ -26,8 +26,11 @@ var myapp = new Vue({
 					// 聊天信息推送
 					_this.mysocket.on('pushMessageList',function (res) {
 						_this.pushMessageList.push(res);
-						var bottom = $('#message-list-ul').position().top + $('#message-list-ul').height();
-						window.scrollTo(0,bottom);
+						_this.$nextTick(function () {
+							// DOM 现在更新了
+							var bottom = $('#message-list-ul').position().top + $('#message-list-ul').height();
+							window.scrollTo(0,bottom);
+						})
 					});
 					// 进入系统友好提示
 					_this.mysocket.on('wholeComeIn',function (res) {
