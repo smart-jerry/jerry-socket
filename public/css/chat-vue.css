@@ -21,6 +21,13 @@
 	width: 100%;
 	box-sizing: border-box;
 }
+.message-list-ul li span:first-child{
+	display: inline-block;
+	color: green;
+}
+.message-list-ul li span:last-child{
+	display: inline-block;
+}
 .input-box{
 	height: 80px;
 	border-top:1px solid #d5d5d5;
