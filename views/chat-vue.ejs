@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>jerry's socket demo</title>
+    <link rel="stylesheet" href="/public/css/base.css">
+    <link rel="stylesheet" href="/public/css/chat-vue.css">
+    <script>
+		var u         = navigator.userAgent;
+		var isiOS     = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		function setAutoWindow(){
+			var winWidths    = (document.body) && (document.body.clientWidth) ? document.body.clientWidth : window.innerWidth;
+			var defaultWidth = 750;
+			var viewport     = document.getElementById('viewport');
+			var appScale     = winWidths >= defaultWidth ? 1 : (winWidths / defaultWidth);
+			viewport.content = 'width=device-width,initial-scale=' + appScale + ', minimum-scale=' + appScale + ', maximum-scale=' + appScale;
+		}
+		if(isiOS) setAutoWindow();
+    </script>
+</head>
+<body>
+<div id="app">
+    <div class="message-box">
+        <div class="message-list">
+            <ul class="message-list-ul" id="message-list-ul">
+                <li v-for="item in pushMessageList">
+                    <span>{{item['userName']}}</span>
+                    <span>{{item['chatMessage']}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="input-box">
+            <input type="text" v-model="chatMessage" placeholder="输入" />
+            <div class="btn-send" @click="sendMsg()">send</div>
+        </div>
+    </div>
+    <div class="whole-come" v-show="welcomeMsg.toString().length>0">{{welcomeMsg}}</div><!--进入系统-->
+    <!--登录-->
+    <div class="login-box J-login-box" v-show="loginShow">
+        <div class="login-header">输入聊天昵称</div>
+        <div class="login-body">
+            <input type="text" v-model="chatName" />
+        </div>
+        <div class="login-footer">
+            <div class="btn" @click="gotochat()">去聊天</div>
+        </div>
+    </div>
+    <div class="login-box-mask" v-show="loginShow"></div>
+</div>
+</body>
+</html>
+<script>if(!isiOS) setAutoWindow();</script>
+<script src="/public/js/vue.min.js"></script>
+<script src="/public/js/socket.io.js"></script>
+<script src="/public/js/jquery.js"></script>
+<script src="/public/javascript/chat-vue.js"></script>

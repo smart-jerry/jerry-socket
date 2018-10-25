@@ -1,0 +1,128 @@
+
+.message-box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 750px;
+	margin-bottom: 100px;
+	box-sizing: border-box;
+}
+.message-list{
+	overflow: auto;
+	text-align: left;
+	padding: 10px 30px;
+	width: 100%;
+	box-sizing: border-box;
+}
+.message-list-ul li{
+	list-style: none;
+	text-align: left;
+	width: 100%;
+	box-sizing: border-box;
+}
+.input-box{
+	height: 80px;
+	border-top:1px solid #d5d5d5;
+	padding-top: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #ffffff;
+}
+.input-box input{
+	height: 100%;
+	width: 100%;
+	border: none;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+.input-box input:focus{
+	border: none;
+}
+.btn-send{
+	border: 1px solid #d5d5d5;
+	padding: 10px 15px;
+	cursor: pointer;
+	margin-right: 10px;
+	box-sizing: border-box;
+}
+/*提示*/
+.whole-come{
+	background: rgba(0,0,0,0.4);
+	position: fixed;
+	left: 50%;
+	top: 200px;
+	padding: 10px;
+	margin-left: -300px;
+	width: 600px;
+	text-align: center;
+}
+
+
+/* 登录面板 */
+.login-box{
+	position: absolute;
+	top:50%;
+	left: 50%;
+	margin-top: -180px;
+	margin-left: -250px;
+	width: 500px;
+	height: 360px;
+	background: #ffffff;
+	overflow: hidden;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+}
+.login-box .login-header{
+	height: 80px;
+	line-height: 80px;
+	border-bottom: 1px solid #d5d5d5;
+	width: 100%;
+	text-align: center;
+}
+.login-box .login-body{
+	-moz-box-flex: 1.0; /*Firefox*/
+	-webkit-box-flex: 1.0; /*Safari,Opera,Chrome*/
+	box-flex: 1.0;
+	width: 100%;
+	padding: 0 30px;
+	box-sizing: border-box;
+}
+.login-box .login-body input{
+	width: 100%;
+	height: 80px;
+	border: 1px solid #d5d5d5;
+}
+.login-box .login-footer{
+	height: 80px;
+	border-top: 1px solid #d5d5d5;
+	width: 100%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.login-box .login-footer .btn{
+	border: 1px solid #d5d5d5;
+	padding: 10px 20px;
+	display: inline-block;
+}
+.login-box-mask{
+	position: fixed;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.5);
+	z-index: 5;
+}

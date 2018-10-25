@@ -37,13 +37,11 @@ chatroom.on('connection',function (socket) {
 
 
 var router = express.Router();
-// chat js模板
-router.get('/chat', function(req, res){
-	console.log(req.baseUrl,'===============');
-//	res.sendFile(__dirname + 'index.html');
+// chat vue模板
+router.get('/chat-vue', function(req, res){
 	var baseInfo ={
 		a:'a'
 	}
-	res.render('chat', {data: baseInfo});
+	res.render('chat-vue', {data: baseInfo});
 });
 module.exports = router;
