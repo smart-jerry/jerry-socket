@@ -38,6 +38,7 @@
             <span class="online-text">在线人数</span>
             <span class="online-num" v-text="onlineNum"></span>
         </div>
+        <div class="leave-btn" @click="closeChat()">离开</div>
     </div>
     <div class="whole-come" v-show="welcomeMsg.toString().length>0">{{welcomeMsg}}</div><!--进入系统-->
     <!--登录-->

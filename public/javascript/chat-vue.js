@@ -41,6 +41,14 @@ var myapp = new Vue({
 							_this.welcomeMsg = '';
 						},1000)
 					})
+					// 有人离开
+					_this.mysocket.on('wholeLeave',function (res) {
+						_this.onlineNum = res.totalNum;
+						_this.welcomeMsg = '"'+res.userName+'" 离开聊天系统！';
+						window.setTimeout(function () {
+							_this.welcomeMsg = '';
+						},1000)
+					})
 				});
 			}
 		},
@@ -58,6 +66,15 @@ var myapp = new Vue({
 		},
 		sendMsg:function () {
 			this.mysocket.emit('pushMessage',this.chatMessage);
+		},
+		closeChat:function () {
+			// 关闭聊天
+			this.mysocket.disconnect(true);
+			/*this.mysocket.emit('leave',{
+				userId:5555,
+				chatToken:'lilytoken',
+				userName:this.chatName
+			});*/
 		}
 	}
 });
