@@ -22,9 +22,10 @@ chatroom.on('connection',function (socket) {
 	userNum++;
 	console.log(userNum+' users inter');
 	var query = socket.handshake.query;
-	query['totalNum'] = userNum;
 	// 进入聊天室
-	chatroom.emit('wholeComeIn', query);// 进入聊天推送
+	socket.broadcast.emit('wholeComeIn', query);// 进入聊天推送
+	// 更新聊天室人数
+	chatroom.emit('totalNum', userNum);// 进入聊天推送
 	// 接受用户发送的聊天内容
 	socket.on('pushMessage',function (msg) {
 		// 拿到用户信息
@@ -39,9 +40,10 @@ chatroom.on('connection',function (socket) {
 	socket.on('disconnect',function () {
 		console.log(query.userName+'离开了....');
 		userNum--;
-		query['totalNum'] = userNum;
 //		console.log(userNum+'===llllllllllllll');
 		chatroom.emit('wholeLeave', query);// 进入聊天推送
+		// 更新聊天室人数
+		chatroom.emit('totalNum', userNum);// 进入聊天推送
 	})
 })
 
