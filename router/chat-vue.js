@@ -18,7 +18,6 @@ var chatroom = io.of('/chatroomvue');
 //});
 // socket 监听
 var userNum = 0;
-var userMark = 1001;
 chatroom.on('connection',function (socket) {
 	userNum++;
 	console.log(userNum+' users inter');
