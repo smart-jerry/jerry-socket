@@ -34,7 +34,7 @@ var myapp = new Vue({
 						})
 					});
 					// 进入系统友好提示
-					_this.mysocket.on('wholeComeIn',function (res) {console.log(res);
+					_this.mysocket.on('wholeComeIn',function (res) {
 						_this.onlineNum = res.totalNum;
 						_this.welcomeMsg = '"'+res.userName+'" 进入聊天系统！欢迎！！！';
 						window.setTimeout(function () {
@@ -42,7 +42,7 @@ var myapp = new Vue({
 						},1000)
 					})
 					// 有人离开
-					_this.mysocket.on('wholeLeave',function (res) {
+					_this.mysocket.on('wholeLeave',function (res) {console.log(res);
 						_this.onlineNum = res.totalNum;
 						_this.welcomeMsg = '"'+res.userName+'" 离开聊天系统！';
 						window.setTimeout(function () {

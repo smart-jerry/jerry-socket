@@ -35,11 +35,12 @@ chatroom.on('connection',function (socket) {
 		}
 		chatroom.emit('pushMessageList', chatMessage);
 	});
-	// 离开聊天室
+	// 离开聊天室，可监听范围:页面刷新、客户端手动关闭
 	socket.on('disconnect',function () {
 		console.log(query.userName+'离开了....');
-		userNum --;
+		userNum--;
 		query['totalNum'] = userNum;
+//		console.log(userNum+'===llllllllllllll');
 		chatroom.emit('wholeLeave', query);// 进入聊天推送
 	})
 })
