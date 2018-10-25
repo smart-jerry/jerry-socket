@@ -69,12 +69,7 @@ var myapp = new Vue({
 		},
 		closeChat:function () {
 			// 关闭聊天
-			this.mysocket.disconnect(true);
-			/*this.mysocket.emit('leave',{
-				userId:5555,
-				chatToken:'lilytoken',
-				userName:this.chatName
-			});*/
+			this.mysocket.disconnect(false);
 		}
 	}
 });
