@@ -20,14 +20,13 @@
 .online-num-box .online-text{
 	border: 1px solid #d5d5d5;
 	width: 120px;
-	height: 40px;
 	padding: 10px;
 }
 .online-num-box .online-num{
-	width: 60px;
-	height: 60px;
+	width: 80px;
+	height: 80px;
 	border: 1px solid #d5d5d5;
-	border-radius: 31px;
+	border-radius: 41px;
 	display: flex;
 	color: darkgreen;
 	justify-content: center;
