@@ -13,7 +13,8 @@ var myapp = new Vue({
 		chatMessage:'',
 		welcomeMsg:'',
 		onlineNum:'',
-		pushMessageList:[]
+		pushMessageList:[],
+		userMark:''
 	},
 	created:function(){
 	
@@ -24,6 +25,10 @@ var myapp = new Vue({
 			if(this.mysocket){
 				this.mysocket.on('connect',function () {
 					console.log(_this.chatName+'链接成功！');
+					//得到唯一标志
+					_this.mysocket.on('currentMark',function (id) {
+						_this.userMark = id;
+					})
 					// 聊天信息推送
 					_this.mysocket.on('pushMessageList',function (res) {
 						_this.pushMessageList.push(res);

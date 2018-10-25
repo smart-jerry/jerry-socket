@@ -58,6 +58,9 @@
 .message-list-ul li span:last-child{
 	display: inline-block;
 }
+.message-list-ul li.message-ownner{
+	direction: rtl;
+}
 .input-box{
 	height: 80px;
 	border-top:1px solid #d5d5d5;

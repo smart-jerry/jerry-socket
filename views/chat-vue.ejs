@@ -24,7 +24,7 @@
     <div class="message-box">
         <div class="message-list">
             <ul class="message-list-ul" id="message-list-ul">
-                <li v-for="item in pushMessageList">
+                <li v-for="item in pushMessageList" v-bind:class="{'message-ownner':item['userMark'] == userMark}">
                     <span>{{item['userName']}}:</span>
                     <span>{{item['chatMessage']}}</span>
                 </li>

@@ -18,10 +18,14 @@ var chatroom = io.of('/chatroomvue');
 //});
 // socket 监听
 var userNum = 0;
+var userMark = 1001;
 chatroom.on('connection',function (socket) {
 	userNum++;
 	console.log(userNum+' users inter');
 	var query = socket.handshake.query;
+	query['id'] = socket.id;
+	// 发送给当前客户端,告知其唯一标志
+	socket.emit('currentMark', socket.id);
 	// 进入聊天室
 	socket.broadcast.emit('wholeComeIn', query);// 进入聊天推送
 	// 更新聊天室人数
@@ -32,7 +36,8 @@ chatroom.on('connection',function (socket) {
 		var chatMessage = {
 			userName:query.userName,
 			userImg:query.userImg,
-			chatMessage:msg
+			chatMessage:msg,
+			userMark:socket.id
 		}
 		chatroom.emit('pushMessageList', chatMessage);
 	});
