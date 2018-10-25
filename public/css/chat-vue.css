@@ -20,10 +20,15 @@
 	text-align: left;
 	width: 100%;
 	box-sizing: border-box;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 10px;
 }
 .message-list-ul li span:first-child{
 	display: inline-block;
 	color: green;
+	margin-right: 10px;
 }
 .message-list-ul li span:last-child{
 	display: inline-block;
