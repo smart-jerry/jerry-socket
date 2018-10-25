@@ -22,6 +22,7 @@ chatroom.on('connection',function (socket) {
 	userNum++;
 	console.log(userNum+' users inter');
 	var query = socket.handshake.query;
+	query['totalNum'] = userNum;
 	chatroom.emit('wholeComeIn', query);// 进入聊天推送
 	// 接受用户发送的聊天内容
 	socket.on('pushMessage',function (msg) {

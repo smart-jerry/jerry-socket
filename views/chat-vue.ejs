@@ -34,6 +34,10 @@
             <input type="text" v-model="chatMessage" placeholder="输入" />
             <div class="btn-send" @click="sendMsg()">send</div>
         </div>
+        <div class="online-num-box" v-show="onlineNum>0">
+            <span class="online-text">在线人数</span>
+            <span class="online-num" v-text="onlineNum"></span>
+        </div>
     </div>
     <div class="whole-come" v-show="welcomeMsg.toString().length>0">{{welcomeMsg}}</div><!--进入系统-->
     <!--登录-->

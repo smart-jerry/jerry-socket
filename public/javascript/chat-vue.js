@@ -12,6 +12,7 @@ var myapp = new Vue({
 		mysocket:'',
 		chatMessage:'',
 		welcomeMsg:'',
+		onlineNum:'',
 		pushMessageList:[]
 	},
 	created:function(){
@@ -33,7 +34,8 @@ var myapp = new Vue({
 						})
 					});
 					// 进入系统友好提示
-					_this.mysocket.on('wholeComeIn',function (res) {
+					_this.mysocket.on('wholeComeIn',function (res) {console.log(res);
+						_this.onlineNum = res.totalNum;
 						_this.welcomeMsg = '"'+res.userName+'" 进入聊天系统！欢迎！！！';
 						window.setTimeout(function () {
 							_this.welcomeMsg = '';

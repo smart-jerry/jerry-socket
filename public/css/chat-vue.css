@@ -8,6 +8,32 @@
 	margin-bottom: 100px;
 	box-sizing: border-box;
 }
+.online-num-box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: fixed;
+	top: 10px;
+	right: 10px;
+}
+.online-num-box .online-text{
+	border: 1px solid #d5d5d5;
+	width: 120px;
+	height: 40px;
+	padding: 10px;
+}
+.online-num-box .online-num{
+	width: 60px;
+	height: 60px;
+	border: 1px solid #d5d5d5;
+	border-radius: 31px;
+	display: flex;
+	color: darkgreen;
+	justify-content: center;
+	align-items: center;
+	margin-top: -1px;
+}
 .message-list{
 	overflow: auto;
 	text-align: left;
