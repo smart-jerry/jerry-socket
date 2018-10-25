@@ -23,7 +23,8 @@ console.log(path,'dddddddddddddddd');
 var mysocket = require('./router/my-scoket');
 var myimages = require('./router/my-images');
 var chat = require('./router/chat');
-app.use('/', [mysocket,myimages,chat]);
+var chatvue = require('./router/chat-vue');
+app.use('/', [mysocket,myimages,chat,chatvue]);
 //  视图
 app.set('views',__dirname + '/views')
 app.set('view engine', 'ejs');

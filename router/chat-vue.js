@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var io =baseConfig.socketIo;
-var chatroom = io.of('/chatroom');
+var chatroom = io.of('/chatroomvue');
 
 // 设置允许的来源value
 //io.origins(['foo.example.com:443']);

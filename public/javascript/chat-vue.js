@@ -41,7 +41,7 @@ var myapp = new Vue({
 		},
 		gotochat : function () {
 			this.loginShow = false;
-			this.mysocket = io.connect('/chatroom',{
+			this.mysocket = io.connect('/chatroomvue',{
 				transports:['websocket'],
 				query:{
 					userId:5555,
