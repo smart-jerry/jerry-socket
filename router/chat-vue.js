@@ -36,7 +36,7 @@ chatroom.on('connection',function (socket) {
 		}
 		chatroom.emit('pushMessageList', chatMessage);
 	});
-	// 离开聊天室，可监听范围:页面刷新、客户端手动关闭
+	// 离开聊天室，可监听范围:页面刷新、客户端手动关闭、关闭浏览器
 	socket.on('disconnect',function () {
 		console.log(query.userName+'离开了....');
 		userNum--;
