@@ -21,6 +21,7 @@
 	border: 1px solid #d5d5d5;
 	width: 120px;
 	padding: 10px;
+	background: rgba(225,225,225,.8);
 }
 .online-num-box .online-num{
 	width: 80px;
@@ -32,6 +33,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: -1px;
+	background: rgba(225,225,225,.8);
 }
 .message-list{
 	overflow: auto;
@@ -104,6 +106,7 @@
 	right: 10px;
 	padding: 10px;
 	border: 1px solid #d5d5d5;
+	background: rgba(225,225,225,.8);
 }
 /*提示*/
 .whole-come{
