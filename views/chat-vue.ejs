@@ -28,7 +28,7 @@
                     <span>{{item['userName']}}:</span>
                     <span>
                         <!--{{item['chatTime'] | datefilter('MM-dd-yyyy')}}-->
-                        {{datefilter(item['chatTime'],'MM-dd-yyyy')}}
+                        {{datefilter(item['chatTime'],'mm-dd-yyyy')}}
                         <hr>
                         {{item['chatMessage']}}
                     </span>
@@ -64,4 +64,5 @@
 <script src="/public/js/vue.min.js"></script>
 <script src="/public/js/socket.io.js"></script>
 <script src="/public/js/jquery.js"></script>
+<script src="/public/js/dateFilter.js"></script>
 <script src="/public/javascript/chat-vue.js"></script>

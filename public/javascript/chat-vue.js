@@ -75,8 +75,10 @@ var myapp = new Vue({
 			// 关闭聊天
 			this.mysocket.disconnect(false);
 		},
-		datefilter:function (value,format) {alert(9);
+		datefilter:function (value,format) {
 			console.log(value,format,'8888');
+			return value;
+//			return window.dateFilter(value,format);
 		}
 	},
 	filters:{
