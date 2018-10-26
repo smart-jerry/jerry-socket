@@ -36,7 +36,8 @@ chatroom.on('connection',function (socket) {
 			userName:query.userName,
 			userImg:query.userImg,
 			chatMessage:msg,
-			userMark:socket.id
+			userMark:socket.id,
+			chatTime:new Date()
 		}
 		chatroom.emit('pushMessageList', chatMessage);
 	});
