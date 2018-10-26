@@ -74,6 +74,9 @@ var myapp = new Vue({
 		closeChat:function () {
 			// 关闭聊天
 			this.mysocket.disconnect(false);
+		},
+		datefilter:function (value,format) {alert(9);
+			console.log(value,format,'8888');
 		}
 	},
 	filters:{
