@@ -27,7 +27,8 @@
                 <li v-for="item in pushMessageList" v-bind:class="{'message-ownner':item['userMark'] == userMark}">
                     <span>{{item['userName']}}:</span>
                     <span>
-                        {{item['chatTime']}}<hr>
+                        {{item['chatTime'] | datefilter('MM-dd-yyyy')}}
+                        <hr>
                         {{item['chatMessage']}}
                     </span>
                 </li>
