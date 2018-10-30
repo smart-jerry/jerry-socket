@@ -76,9 +76,7 @@ var myapp = new Vue({
 			this.mysocket.disconnect(false);
 		},
 		datefilter:function (value,format) {
-			console.log(value,format,'8888');
-			return value;
-//			return window.dateFilter(value,format);
+			return window.dateFormat(value,format);
 		}
 	},
 	filters:{
