@@ -3,6 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" charset="UTF-8">
     <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="og:title" content="tttttttt  tttttt">
+    <meta property="og:description" content="description description descriptiondescription description description">
+    <meta name="og:image" id="imgMeta" content="https://imcut.jollychic.com/uploads/jollyimg/imageMaterialLib/201811/01/IL201811011044208550.jpg">
     <title>jerry's socket demo</title>
     <link rel="stylesheet" href="/public/css/base.css">
     <link rel="stylesheet" href="/public/css/myimages.css">
@@ -32,7 +35,7 @@
     <div id="images-show">
         <h2>图片保存区域</h2>
     </div>
-    <div class="share-btn" onclick="share()">share</div>
+    <div class="share-btn" onclick="myapp.cutToCanvas()">share</div>
 </div>
 </body>
 </html>
@@ -40,16 +43,29 @@
 <script src="/public/js/jquery.js"></script>
 <script src="/public/js/html2canvas.js"></script>
 <script>
-    function share () {
-    	var content =  document.getElementById('images-list');
-        if(typeof html2canvas != "undefined" ){
-	        html2canvas(content).then(function(canvas) {
-//	        	$('#images-show').append(canvas);
-	        	document.getElementById('images-show').appendChild(canvas);
-	        });
+    var myapp = {
+    	cutToCanvas:function () {
+    		var _this = this;
+		    var content =  document.getElementById('images-list');
+		    if(typeof html2canvas != "undefined" ){
+			    html2canvas(content).then(function(canvas) {
+				    canvas.setAttribute('id', 'mycanvas');
+				    document.getElementById('images-show').appendChild(canvas);
+                    _this.canvasToImg();
+			    });
+		    }
+	    },
+        canvasToImg:function () {
+            var canvas = document.getElementById('mycanvas');
+            var url = canvas.toDataURL();
+            console.log(url);
+//            var image = new Image();
+//            image.src = url;
 
-
+	        var imgMeta     = document.getElementById('imgMeta');
+	        imgMeta.content = url;
         }
     }
+    myapp.cutToCanvas();
 
 </script>
