@@ -35,7 +35,7 @@
     <div id="images-show">
         <h2>图片保存区域</h2>
     </div>
-    <div class="share-btn" onclick="myapp.cutToCanvas()">share</div>
+    <div class="share-btn" onclick="myapp.cutToCanvas()">截图</div>
 </div>
 </body>
 </html>
@@ -57,15 +57,15 @@
 	    },
         canvasToImg:function () {
             var canvas = document.getElementById('mycanvas');
-            var url = canvas.toDataURL();
+            var url = canvas.toDataURL();// base64位图
             console.log(url);
 //            var image = new Image();
 //            image.src = url;
 
 	        var imgMeta     = document.getElementById('imgMeta');
-	        imgMeta.content = url;
+//	        imgMeta.content = url;
         }
     }
-    myapp.cutToCanvas();
+//    myapp.cutToCanvas();
 
 </script>
