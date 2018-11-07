@@ -19,7 +19,7 @@ router.get('/getImage', function(req, res){
 router.post('/getImage',function (req,res) {
 //	console.log(req.body,'4444444444444444444444');
 	var data = req.body.imgurl;
-	var path = 'public/images/'+ Date.now() +'.png';//从app.js级开始找--在我的项目工程里是这样的
+	var path = 'public/images/'+ Date.now() +'.png';//图片存放目录
 	var base64 = data.replace(/^data:image\/\w+;base64,/, "");//去掉图片base64码前面部分data:image/png;base64
 	var dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
 	console.log('dataBuffer是否是Buffer对象：'+Buffer.isBuffer(dataBuffer));
