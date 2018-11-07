@@ -28,8 +28,7 @@ router.post('/getImage',function (req,res) {
 			console.log(err);
 			res.send({
 				result:'1',
-				message:'failed',
-				imgUrl:resUrl+path
+				message:'failed'
 			})
 		}else{
 			console.log('写入成功！');
