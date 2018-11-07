@@ -35,7 +35,20 @@
     <div id="images-show">
         <h2>图片保存区域</h2>
     </div>
-    <div class="share-btn" onclick="myapp.cutToCanvas()">截图</div>
+    <div class="share-btn" onclick="myapp.submitForm()">截图</div>
+    <form id="imgForm" method="get" action="/getImage">
+        <input type="text" id="imgText" name="baseurl" value="dddddddddddddddd">
+        <input type="text" name="username" value="">
+        <input type="text" name="password" value="">
+        <input type="submit" value="提交">
+    </form>
+
+</br>
+    <form action="/get/image" method="post">
+        <p>First name: <input type="text" name="fname" /></p>
+        <p>Last name: <input type="text" name="lname" /></p>
+        <input type="submit" value="Submit" />
+    </form>
 </div>
 </body>
 </html>
@@ -44,26 +57,42 @@
 <script src="/public/js/html2canvas.js"></script>
 <script>
     var myapp = {
-    	cutToCanvas:function () {
+    	cutToCanvas:function (callback) {
     		var _this = this;
 		    var content =  document.getElementById('images-list');
 		    if(typeof html2canvas != "undefined" ){
 			    html2canvas(content).then(function(canvas) {
 				    canvas.setAttribute('id', 'mycanvas');
 				    document.getElementById('images-show').appendChild(canvas);
-                    _this.canvasToImg();
+                    var imgt = _this.canvasToImg();
+				    callback && callback(imgt);
 			    });
 		    }
 	    },
         canvasToImg:function () {
             var canvas = document.getElementById('mycanvas');
             var url = canvas.toDataURL();// base64位图
-            console.log(url);
-//            var image = new Image();
-//            image.src = url;
+//	        console.log(url);
+            return url;
+        },
+        submitForm:function () {
+            this.cutToCanvas(function (res) {
+//	            document.getElementById('imgText').value = res;
 
-	        var imgMeta     = document.getElementById('imgMeta');
-//	        imgMeta.content = url;
+//	            $.ajax({
+//		            type     : 'POST',
+//		            url      : '/getImage',
+//		            data     : res,
+//		            success  : function () {
+//			            alert(1);
+//		            },
+//		            dataType : 'json'
+//	            });
+	            window.setTimeout(function () {
+		            $('#imgForm').submit();
+	            },1000)
+            });
+
         }
     }
 //    myapp.cutToCanvas();
