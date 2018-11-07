@@ -6,7 +6,6 @@ var router = express.Router();
 var fs = require('fs');
 
 router.get('/getImage', function(req, res){
-	console.log(req.getParameter,'===============');
 //	res.sendFile(__dirname + 'index.html');
 	var baseInfo ={
 		a:'a'
@@ -18,6 +17,7 @@ router.get('/getImage', function(req, res){
 // 图片上传请求
 router.post('/getImage',function (req,res) {
 //	console.log(req.body,'4444444444444444444444');
+	var resUrl = global.baseConfig.baseUrl+'/';
 	var data = req.body.imgurl;
 	var path = 'public/images/'+ Date.now() +'.png';//图片存放目录
 	var base64 = data.replace(/^data:image\/\w+;base64,/, "");//去掉图片base64码前面部分data:image/png;base64
@@ -28,19 +28,18 @@ router.post('/getImage',function (req,res) {
 			console.log(err);
 			res.send({
 				result:'1',
-				message:'failed'
+				message:'failed',
+				imgUrl:resUrl+path
 			})
 		}else{
 			console.log('写入成功！');
 			res.send({
 				result:'0',
-				message:'success'
+				message:'success',
+				imgUrl:resUrl+path
 			})
 		}
 	})
-	
-	
-//	return res.redirect(req.session.originalUrl);
 })
 
 module.exports = router;

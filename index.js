@@ -9,6 +9,14 @@ var io =require('socket.io');
 var bodyParser = require('body-parser');// HTTP请求体解析的中间件，使用这个模块可以解析JSON、Raw、文本、URL-encoded格式的请求体
 // io
 var baseConfig={};
+if(process.env.NODE_ENV === 'dev'){
+	// process.env.NODE_ENV 来自于运行脚本的参数，eg：cross-env NODE_ENV=production node test.js
+	baseConfig = require('./config/dev')
+}
+if(process.env.NODE_ENV === 'release'){
+	baseConfig = require('./config/realse')
+}
+
 baseConfig.socketIo = io.listen(Server,{ serveClient: false });
 //将全局变量设置为不可删除、只读
 Object.defineProperty(global, "baseConfig", {
