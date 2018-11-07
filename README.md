@@ -2,7 +2,7 @@
 ##一，访问：
 浏览器：http://localhost:3000/
 
-node index.js启动服务，端口3000
+启动服务：node index.js，端口3000
 
 client文件夹下的helloWorld.html文件可以直接访问
 
@@ -21,6 +21,14 @@ chat-vue引入了vue.js
 
 ## 一，访问
 浏览器访问：http://localhost:3000/getImage
+
+功能点：
+
+屏幕截屏，
+
+请求数据发送，
+
+nodejs处理图片，并返回图片地址
 
 
 
