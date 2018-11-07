@@ -3,6 +3,8 @@
  */
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
+
 router.get('/getImage', function(req, res){
 	console.log(req.getParameter,'===============');
 //	res.sendFile(__dirname + 'index.html');
@@ -15,12 +17,29 @@ router.get('/getImage', function(req, res){
 
 // 图片上传请求
 router.post('/getImage',function (req,res) {
-	console.log(req.body,'4444444444444444444444');
-	var data = req.body;
-	res.send({
-		result:'0',
-		message:'success'
+//	console.log(req.body,'4444444444444444444444');
+	var data = req.body.imgurl;
+	var path = 'public/images/'+ Date.now() +'.png';//从app.js级开始找--在我的项目工程里是这样的
+	var base64 = data.replace(/^data:image\/\w+;base64,/, "");//去掉图片base64码前面部分data:image/png;base64
+	var dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
+	console.log('dataBuffer是否是Buffer对象：'+Buffer.isBuffer(dataBuffer));
+	fs.writeFile(path,dataBuffer,function(err){//用fs写入文件
+		if(err){
+			console.log(err);
+			res.send({
+				result:'1',
+				message:'failed'
+			})
+		}else{
+			console.log('写入成功！');
+			res.send({
+				result:'0',
+				message:'success'
+			})
+		}
 	})
+	
+	
 //	return res.redirect(req.session.originalUrl);
 })
 
