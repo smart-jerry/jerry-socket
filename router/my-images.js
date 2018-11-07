@@ -4,7 +4,7 @@
 var express = require('express');
 var router = express.Router();
 router.get('/getImage', function(req, res){
-	console.log(req,'===============');
+	console.log(req.getParameter,'===============');
 //	res.sendFile(__dirname + 'index.html');
 	var baseInfo ={
 		a:'a'
@@ -14,15 +14,14 @@ router.get('/getImage', function(req, res){
 
 
 // 图片上传请求
-router.post('/get/image',function (request, response) {
-	console.log(request.body,'88888888888888888888800000000000000000');
-//	res.send({
-//		'result':0,
-//		'message':'success'
-//	});
-//	response.render('my-images', {data: {
-//		'result':0,
-//		'message':'success'
-//	}});
+router.post('/getImage',function (req,res) {
+	console.log(req.body,'4444444444444444444444');
+	var data = req.body;
+	res.send({
+		result:'0',
+		message:'success'
+	})
+//	return res.redirect(req.session.originalUrl);
 })
+
 module.exports = router;

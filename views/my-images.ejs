@@ -36,19 +36,6 @@
         <h2>图片保存区域</h2>
     </div>
     <div class="share-btn" onclick="myapp.submitForm()">截图</div>
-    <form id="imgForm" method="get" action="/getImage">
-        <input type="text" id="imgText" name="baseurl" value="dddddddddddddddd">
-        <input type="text" name="username" value="">
-        <input type="text" name="password" value="">
-        <input type="submit" value="提交">
-    </form>
-
-</br>
-    <form action="/get/image" method="post">
-        <p>First name: <input type="text" name="fname" /></p>
-        <p>Last name: <input type="text" name="lname" /></p>
-        <input type="submit" value="Submit" />
-    </form>
 </div>
 </body>
 </html>
@@ -77,20 +64,19 @@
         },
         submitForm:function () {
             this.cutToCanvas(function (res) {
-//	            document.getElementById('imgText').value = res;
-
-//	            $.ajax({
-//		            type     : 'POST',
-//		            url      : '/getImage',
-//		            data     : res,
-//		            success  : function () {
-//			            alert(1);
-//		            },
-//		            dataType : 'json'
-//	            });
-	            window.setTimeout(function () {
-		            $('#imgForm').submit();
-	            },1000)
+                var res = {
+                	imgurl:res,
+                    time:new Date().getTime()
+                }
+	            $.ajax({
+		            type     : 'POST',
+		            url      : '/getImage',
+		            data     : res,
+		            success  : function (res) {
+			            alert(res.message);
+		            },
+		            dataType : 'json'
+	            });
             });
 
         }
