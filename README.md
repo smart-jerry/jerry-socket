@@ -1,5 +1,9 @@
 # jerry-socket
 
+## 环境说明：
+1，node： 8.11.4
+
+
 ## 一，访问：
 浏览器：http://localhost:3000/
 
