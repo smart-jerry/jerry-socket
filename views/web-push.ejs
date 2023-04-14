@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>jerry's web push demo</title>
+    <link rel="stylesheet" href="/public/css/base.css">
+    <script>
+		var u         = navigator.userAgent;
+		var isiOS     = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+		function setAutoWindow(){
+			var winWidths    = (document.body) && (document.body.clientWidth) ? document.body.clientWidth : window.innerWidth;
+			var defaultWidth = 750;
+			var viewport     = document.getElementById('viewport');
+			var appScale     = winWidths >= defaultWidth ? 1 : (winWidths / defaultWidth);
+			viewport.content = 'width=device-width,initial-scale=' + appScale + ', minimum-scale=' + appScale + ', maximum-scale=' + appScale;
+		}
+		if(isiOS) setAutoWindow();
+    </script>
+    <style>
+        #app{
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        input{
+            font-size: 12px;
+            border: 1px solid #d5d5d5;
+            padding: 4px 20px;
+            height: 38px;
+            box-sizing: border-box;
+            margin-right: 10px;
+        }
+        .btn{
+            border: 1px solid #d5d5d5;
+            text-align: center;
+            padding: 4px 20px;
+            height: 38px;
+            box-sizing: border-box;
+            background: #ffffff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    推送消息：<input type="text" v-model="message">
+    <button class="btn" @click="sendMsg">推送</button>
+</div>
+</body>
+</html>
+<script>if(!isiOS) setAutoWindow();</script>
+<script src="/public/js/vue.min.js"></script>
+<script src="/public/javascript/web-push.js"></script>

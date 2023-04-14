@@ -36,7 +36,17 @@ var mysocket = require('./router/my-scoket');
 var myimages = require('./router/my-images');
 var chat = require('./router/chat');
 var chatvue = require('./router/chat-vue');
-app.use('/', [mysocket,myimages,chat,chatvue]);
+var webpush = require('./router/web-push');
+//设置跨域访问
+app.all('*', function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+	// res.header("X-Powered-By",' 3.2.1')
+	res.header("Content-Type", "application/json;charset=utf-8");
+	next();
+});
+app.use('/', [mysocket,myimages,chat,chatvue,webpush]);
 //  视图
 app.set('views',__dirname + '/views')
 app.set('view engine', 'ejs');
